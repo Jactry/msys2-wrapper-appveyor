@@ -6,4 +6,4 @@ SET PATH=C:\ProgramData\msys32\wrapper\;%PATH%
 echo "Test MSYS2"
 mkdir test
 cd test
-msys2run "pacman -S --needed --noconfirm zsh"
+msys2run ../msys2_script.sh

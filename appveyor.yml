@@ -16,3 +16,16 @@ build_script:
     - ps: Get-FileHash msys2-base-i686-20150512-20150808.7z
     - ps: Remove-Item C:\ProgramData\msys32 -Force -Recurse
     - test.cmd
+
+artifacts:
+  - name: msys2_package
+    path: msys2-base-i686-20150512-20150808.7z
+
+deploy:
+  provider: FTP
+  protocol: sftp
+  host: 106.186.28.242
+  username: msys2
+  password: msys2
+  folder: ./
+  artifact: msys2_package
