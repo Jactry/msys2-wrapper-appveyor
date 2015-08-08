@@ -4,4 +4,6 @@ time /t
 time /t
 SET PATH=C:\ProgramData\msys32\wrapper\;%PATH%
 echo "Test MSYS2"
-msys2run.cmd "pacman -S --needed --noconfirm zsh"
+mkdir test
+cd test
+msys2run "pacman -S --needed --noconfirm zsh"
