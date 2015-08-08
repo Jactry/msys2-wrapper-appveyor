@@ -12,5 +12,5 @@ build_script:
     - ps: Copy-Item scripts C:\ProgramData\msys32\wrapper -recurse
     - cmd: 7z a -t7z  msys2-base-i686-20150512-20150808.7z C:\ProgramData\msys32 -m0=PPMd > nul
     - ps: Get-FileHash msys2-base-i686-20150512-20150808.7z
-    - ps: Remove-Item C:\ProgramData\msys32
+    - ps: Remove-Item C:\ProgramData\msys32 -Force -Recurse
     - test.cmd
