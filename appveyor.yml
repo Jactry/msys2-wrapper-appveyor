@@ -1,5 +1,16 @@
 version: 1.0.{build}
 
+install:
+    - cinst 7zip.commandline axel
+    - cmd: axel http://sourceforge.net/projects/msys2/files/Base/i686/msys2-base-i686-20150512.tar.xz > nul  
+    - cmd: 7z x msys2-base-i686-20150512.tar.xz -oC:\ProgramData\msys2-base-i686.tar > nul
+    - cmd: 7z x c:\ProgramData\msys2-base-i686.tar -oC:\ProgramData\ > nul
+
 build_script:
     - package_msys2.cmd
+    - ps: Remove-Item C:\ProgramData\msys32\var\cache\pacman\pkg\*
+    - ps: Copy-Item C:\scripts C:\ProgramData\msys32\wrapper -recurse
+    - cmd: 7z a -t7z  msys2-base-i686-20150512-20150808.7z C:\ProgramData\msys32 -m0=PPMd > nul
+    - ps: Get-FileHash msys2-base-i686-20150512-20150808.7z
+    - ps: Remove-Item C:\ProgramData\msys32
     - test.cmd
